@@ -1606,13 +1606,15 @@ public class ItemTouchHelperExtension extends RecyclerView.ItemDecoration
 
         /**
          * @return amount of swiped size of view
+         * @param viewHolder
          */
-        public abstract int getSwipedTranslationX();
+        public abstract int getSwipedTranslationX(ViewHolder viewHolder);
 
         /**
          * @return amount of swiped size of view
+         * @param viewHolder
          */
-        public abstract int getSwipedTranslationY();
+        public abstract int getSwipedTranslationY(ViewHolder viewHolder);
 
         /**
          * Converts a given set of flags to absolution direction which means {@link #START} and
@@ -2472,12 +2474,12 @@ public class ItemTouchHelperExtension extends RecyclerView.ItemDecoration
          */
         public void update() {
             if (mStartDx == mTargetX) {
-                mX = mCallback.getSwipedTranslationX();
+                mX = mCallback.getSwipedTranslationX(mViewHolder);
             } else {
                 mX = mStartDx + mFraction * (mTargetX - mStartDx);
             }
             if (mStartDy == mTargetY) {
-                mY = mCallback.getSwipedTranslationY();
+                mY = mCallback.getSwipedTranslationY(mViewHolder);
             } else {
                 mY = mStartDy + mFraction * (mTargetY - mStartDy);
             }
