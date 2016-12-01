@@ -1608,13 +1608,13 @@ public class ItemTouchHelperExtension extends RecyclerView.ItemDecoration
          * @return amount of swiped size of view
          * @param viewHolder
          */
-        public abstract int getSwipedTranslationX(ViewHolder viewHolder);
+        public abstract float getSwipedTranslationX(ViewHolder viewHolder);
 
         /**
          * @return amount of swiped size of view
          * @param viewHolder
          */
-        public abstract int getSwipedTranslationY(ViewHolder viewHolder);
+        public abstract float getSwipedTranslationY(ViewHolder viewHolder);
 
         /**
          * Converts a given set of flags to absolution direction which means {@link #START} and
