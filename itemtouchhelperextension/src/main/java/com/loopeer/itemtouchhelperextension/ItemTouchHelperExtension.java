@@ -400,8 +400,10 @@ public class ItemTouchHelperExtension extends RecyclerView.ItemDecoration
         }
     };
 
-
-    private void closeOpenedPreItem() {
+    /**
+     * Close opened item if exists or do nothing
+     */
+    public void closeOpenedPreItem() {
         final View view = mCallback.getItemFrontView(mPreOpened);
         if (mPreOpened == null || view == null) return;
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, "translationX", view.getTranslationX(), 0f);
