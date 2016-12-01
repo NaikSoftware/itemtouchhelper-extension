@@ -1,6 +1,8 @@
 # itemtouchhelper-extension
 This library add something for swipe item settling, recover base on the [Itemtouchhelper](https://developer.android.com/reference/android/support/v7/widget/helper/ItemTouchHelper.html).
 
+[![Release](https://jitpack.io/v/NaikSoftware/itemtouchhelper-extension.svg)](https://jitpack.io/#NaikSoftware/itemtouchhelper-extension)
+
 This used in the repo [code-reader](https://github.com/loopeer/code-reader)
 
 [Download Smaple](https://github.com/loopeer/itemtouchhelper-extension/releases/tag/1.0.0)
