@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopeer.itemtouchhelperextension.Extension;
 import com.loopeer.itemtouchhelperextension.ItemTouchHelperExtension;
 
 import java.util.ArrayList;
@@ -169,7 +168,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     }
 
-    class ItemSwipeWithActionWidthViewHolder extends ItemBaseViewHolder implements Extension {
+    class ItemSwipeWithActionWidthViewHolder extends ItemBaseViewHolder {
 
         View mActionViewDelete;
         View mActionViewRefresh;
@@ -179,23 +178,12 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             mActionViewDelete = itemView.findViewById(R.id.view_list_repo_action_delete);
             mActionViewRefresh = itemView.findViewById(R.id.view_list_repo_action_update);
         }
-
-        @Override
-        public float getActionWidth() {
-            return mActionContainer.getWidth();
-        }
     }
 
-    class ItemSwipeWithActionWidthNoSpringViewHolder extends ItemSwipeWithActionWidthViewHolder implements Extension {
+    class ItemSwipeWithActionWidthNoSpringViewHolder extends ItemBaseViewHolder {
 
         public ItemSwipeWithActionWidthNoSpringViewHolder(View itemView) {
             super(itemView);
         }
-
-        @Override
-        public float getActionWidth() {
-            return mActionContainer.getWidth();
-        }
     }
-
 }

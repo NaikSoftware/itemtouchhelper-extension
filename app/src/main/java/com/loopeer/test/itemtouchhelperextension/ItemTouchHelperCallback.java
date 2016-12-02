@@ -27,6 +27,15 @@ public class ItemTouchHelperCallback extends ItemTouchHelperExtension.Callback {
     }
 
     @Override
+    public float getSwipeWidth(RecyclerView.ViewHolder holder) {
+        if (holder instanceof MainRecyclerAdapter.ItemSwipeWithActionWidthViewHolder)
+            return ((MainRecyclerAdapter.ItemSwipeWithActionWidthViewHolder) holder).mActionContainer.getWidth();
+        else if (holder instanceof MainRecyclerAdapter.ItemSwipeWithActionWidthNoSpringViewHolder)
+            return ((MainRecyclerAdapter.ItemSwipeWithActionWidthNoSpringViewHolder) holder).mActionContainer.getWidth();
+        else return super.getSwipeWidth(holder);
+    }
+
+    @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
         MainRecyclerAdapter adapter = (MainRecyclerAdapter) recyclerView.getAdapter();
         adapter.move(viewHolder.getAdapterPosition(), target.getAdapterPosition());
