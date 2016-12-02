@@ -2,8 +2,10 @@
 package com.loopeer.test.itemtouchhelperextension;
 
 import android.graphics.Canvas;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.ViewGroup;
 
 import com.loopeer.itemtouchhelperextension.ItemTouchHelperExtension;
 
@@ -15,6 +17,16 @@ public class ItemTouchHelperCallback extends ItemTouchHelperExtension.Callback {
     }
 
     @Override
+    public float getSwipedTranslationY(RecyclerView.ViewHolder viewHolder) {
+        return 0;
+    }
+
+    @Override
+    public float getSwipedTranslationX(RecyclerView.ViewHolder viewHolder) {
+        return ViewCompat.getTranslationX(((ViewGroup) viewHolder.itemView).getChildAt(0));
+    }
+
+    @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
         MainRecyclerAdapter adapter = (MainRecyclerAdapter) recyclerView.getAdapter();
         adapter.move(viewHolder.getAdapterPosition(), target.getAdapterPosition());
@@ -23,7 +35,6 @@ public class ItemTouchHelperCallback extends ItemTouchHelperExtension.Callback {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-
     }
 
     @Override
