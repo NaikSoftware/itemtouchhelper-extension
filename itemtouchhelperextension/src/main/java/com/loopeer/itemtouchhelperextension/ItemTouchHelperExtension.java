@@ -644,7 +644,7 @@ public class ItemTouchHelperExtension extends RecyclerView.ItemDecoration
                     case START:
                     case END:
                         targetTranslateY = 0;
-                        float swipeWidth = mCallback.getSwipeWidth(mSelected);
+                        float swipeWidth = mCallback.getSwipeWidth(mSelected, swipeDir);
                         if (swipeWidth == -1) swipeWidth = mRecyclerView.getWidth();
                         targetTranslateX = Math.signum(mDx) * swipeWidth;
                         break;
@@ -2244,7 +2244,7 @@ public class ItemTouchHelperExtension extends RecyclerView.ItemDecoration
             return value;
         }
 
-        public float getSwipeWidth(ViewHolder holder) {
+        public float getSwipeWidth(ViewHolder holder, int swipeDirection) {
             return -1;
         }
     }

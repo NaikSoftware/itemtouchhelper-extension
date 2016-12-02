@@ -13,7 +13,7 @@ public class ItemTouchHelperCallback extends ItemTouchHelperExtension.Callback {
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-        return makeMovementFlags(ItemTouchHelper.UP|ItemTouchHelper.DOWN, ItemTouchHelper.START);
+        return makeMovementFlags(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
     }
 
     @Override
@@ -27,12 +27,14 @@ public class ItemTouchHelperCallback extends ItemTouchHelperExtension.Callback {
     }
 
     @Override
-    public float getSwipeWidth(RecyclerView.ViewHolder holder) {
-        if (holder instanceof MainRecyclerAdapter.ItemSwipeWithActionWidthViewHolder)
-            return ((MainRecyclerAdapter.ItemSwipeWithActionWidthViewHolder) holder).mActionContainer.getWidth();
+    public float getSwipeWidth(RecyclerView.ViewHolder holder, int swipeDirection) {
+        if (swipeDirection == ItemTouchHelper.RIGHT) return 0;
+        if (holder instanceof MainRecyclerAdapter.ItemSwipeWithActionWidthViewHolder) {
+            return ((MainRecyclerAdapter.ItemBaseViewHolder) holder).mActionContainer.getWidth();
+        }
         else if (holder instanceof MainRecyclerAdapter.ItemSwipeWithActionWidthNoSpringViewHolder)
-            return ((MainRecyclerAdapter.ItemSwipeWithActionWidthNoSpringViewHolder) holder).mActionContainer.getWidth();
-        else return super.getSwipeWidth(holder);
+            return ((MainRecyclerAdapter.ItemBaseViewHolder) holder).mActionContainer.getWidth();
+        else return super.getSwipeWidth(holder, swipeDirection);
     }
 
     @Override
@@ -55,6 +57,10 @@ public class ItemTouchHelperCallback extends ItemTouchHelperExtension.Callback {
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         if (dY != 0 && dX == 0) super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         MainRecyclerAdapter.ItemBaseViewHolder holder = (MainRecyclerAdapter.ItemBaseViewHolder) viewHolder;
+        if (dX > 0) {
+            holder.itemView.setTranslationX(holder.itemView.getWidth() / 5 * (dX / holder.itemView.getWidth()));
+            return;
+        }
         if (viewHolder instanceof MainRecyclerAdapter.ItemSwipeWithActionWidthNoSpringViewHolder) {
             if (dX < -holder.mActionContainer.getWidth()) {
                 dX = -holder.mActionContainer.getWidth();
